@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>后台登录</title>
+</head>
+<body>
+  <!-- 引入头文件 -->
+  <include file='Public/header' />
+
+  <div class="container" style="margin-top: 120px;">
+    <div class="row">
+      <form class="col-md-12 form-horizontal" action="{:U('checkLogin')}" method="post">
+
+        <div class="form-group">
+          <label for="managename" class="col-sm-5 control-label">管理员账号<em>　:</em></label>
+          <div class="col-sm-3">
+            <input id="managename" type="text" name="account" class="form-control text" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="col-sm-5 control-label">管理员密码<em>　:</em></label>
+          <div class="col-sm-3">
+            <input id="password" type="password" name="password" class="form-control text" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="verify" class="col-sm-5 control-label">请输入下图验证码<em>　:</em></label>
+          <div class="col-sm-3">
+            <input id="verify" type="text" name="verify" class="form-control text" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label  class="col-sm-5 control-label"><em>　</em></label>
+          <div class="col-sm-3">
+            <img src="{:U('verify')}" onclick="javascript:this.src=this.src+'?'+Math.random()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label  class="col-sm-5 control-label"><em>　</em></label>
+          <div class="col-sm-3">
+            <input type="submit" value="登录" class="button button-3d button-primary button-rounded">
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  <!-- 引入尾文件 -->
+  <include file='Public/footer' />
+</body>
+</html>

@@ -1,0 +1,86 @@
+<style type="text/css">
+div.left{
+  float: left;
+}
+div.left>a>img{
+  height: 80px;
+  padding-left: 20px;
+}
+div.right{
+  float: right;
+  width: 80%;
+  height: 100%;
+}
+div.minfo{
+  height: 100%;
+}
+div.minfo span,div.minfo strong,div.minfo a{
+  display:inline-block;
+  float: right;
+  height: 100%;
+  line-height: 80px;
+}
+div.login{
+  padding-top: 30px;
+}
+div.login>div{
+  float: left;
+  margin-left: 5%;
+}
+</style>
+<!-- 引入头文件 -->
+<include file='Public/header' />
+
+<div class="container-fulid">
+  <div class="row">
+    <div class="left">
+      <a href="http://{$Think.server.server_name}" target="_prenat">
+        <img src="__PUBLIC__/Images/Admin/h_logo.png" class="img img-rounded">
+      </a>
+    </div>
+    <div class="right">
+      <div class="container-fulid">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-6">
+            <div class="login">
+              <div>
+                <if condition='session("mlogintime") eq 0'>
+                    <strong>这是您第一次登录</strong>
+                  <else />
+                    上次登录时间:<strong>{$Think.session.mlogintime|date='Y-m-d H:i:s',###}</strong>
+                </if>
+                <br>
+                本次登录时间:<strong>{$Think.session.mnlogintime|date='Y-m-d H:i:s',###}</strong>
+              </div>
+
+              <div>
+                <br>
+                该账号已登录 <em> [ <strong> {$Think.session.mlogins} </strong> ] </em> 次
+              </div>
+
+              <div>
+                <if condition='session("mlogintime") eq 0'>
+                    <strong>这是您第一次登录</strong>
+                  <else />
+                    上次登录IP:<strong>{$Think.session.mloginip}</strong>
+                </if>
+                <br>
+                本次登录IP:<strong>{$Think.session.mnloginip}</strong>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 minfo">
+            <a href="{:U('Common/logout')}" target="_parent">[退出]</a>
+            <a href="http://{$Think.server.server_name}" target="_black">[ 首页 ]</a>
+            <strong>[ 超级管理员 ]</strong>
+            <span>admin　</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<!-- 引入尾文件 -->
+<include file='Public/footer' />

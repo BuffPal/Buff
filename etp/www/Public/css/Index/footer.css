@@ -1,0 +1,114 @@
+/**弹出效果**/
+#fade{
+  position:fixed;
+  left: 40%;
+  top: 38%;
+  width: 200px;
+  height: 40px;
+  background: #fff;
+  z-index: 9999;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px #434343;
+  display: none;
+}
+#fade>span{
+  display: block;
+  width: 100%;
+  height: 40px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px #727272;
+  font-size: 1.8rem;
+  text-align: center;
+  line-height: 40px;
+}
+/* 视频模态框样式 */
+#video{
+      width: 569px;
+      height: 393px;
+}
+#video div.modal-header{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* 音乐播放器 */
+@keyframes buttonShadow{/*切换按钮阴影动画动画*/
+    0%{box-shadow:0px 0px 10px #4F75F8 }
+    40%{box-shadow:0px 0px 10px #4DD6D5 }
+    60%{box-shadow:0px 0px 10px #58D87A }
+    80%{box-shadow:0px 0px 10px #ECE567 }
+    100%{box-shadow:0px 0px 10px #C7674C }
+}
+#musicBox{
+  position: fixed;
+  top: 50%;
+  left: -200px;
+  padding: 0;
+}
+.jAudio--player{
+  float: left;
+  margin: 0px;
+  width: 200px;
+}
+.jAudio--controls>ul{
+  padding: 0;
+}
+#musicBox .button-wrap{
+  margin-left: 5px;
+  margin-top: 40%;
+  display: block;
+  float: left;
+}
+#musicBox .button-wrap.buttonShadow{
+  animation: buttonShadow 5s infinite linear;
+}
+
+/* Ajax 模态框加载 */
+@keyframes colorLogin{/*颜色变化*/
+    0%{color: #FF0000 }
+    40%{color: #1A00FE }
+    60%{color: #00FF34 }
+    80%{color: #A9BE00 }
+    100%{color: #FF0000 }
+}
+@keyframes xuanzhuan{/*颜色变化*/
+    0%{transform: rotateZ(0deg);}
+    100%{transform: rotateZ(360deg);}
+}
+#modalAjax h4{
+  animation: colorLogin 5s infinite linear;
+  text-align: center;
+}
+#modalAjax h4>span{
+  animation: xuanzhuan .7s infinite linear;
+}
+.footer{
+  color:#777;
+  padding:30px 0;
+  border-top:1px solid #e5e5e5;
+  margin-top:70px
+}
+.footer a{
+  color:#777
+}
+.footer-top .about>div{
+  height:110px;
+  width: 110px;
+  margin-bottom:10px
+}
+.footer-top .about>div h4{
+  color:#563d7c;
+  font-size:16px
+}
+.footer-bottom{
+  font-size:13px
+}
+.footer-bottom ul>li{
+  padding:0
+}
+.footer-bottom ul>li+li:before{
+  padding:0 10px;
+  color:#ccc;
+  content:"|"
+}

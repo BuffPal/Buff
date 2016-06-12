@@ -1,0 +1,93 @@
+.main{
+  margin-top: 80px;
+  min-height: 600px;
+  position: relative;
+}
+.main div.img{
+  width: 100%;
+  min-height: 600px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: 1170px auto;
+  z-index: -5;
+}
+#img2{
+  width: 100%;
+  min-height: 600px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: 1170px auto;
+  z-index: -6;
+}
+.main form{
+  margin-top: 40%;
+  margin-left: 19%;
+}
+.main label{
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+.main .text{
+  background: rgba(255,255,255,.8);
+}
+.main .info{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 25%;
+}
+.main .button-group{
+  padding: 0;
+  padding-top: 20px;
+  padding-left: 35px;
+}
+.main .button{
+  padding: 0;
+  width: 60px;
+  font-size: 12px;
+}
+
+
+
+/* 响应式 */
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) { 
+  .main form{
+    margin-top: 0%;
+  }
+  .main .button{
+    padding:  0 20px;
+    width: 80px;
+    font-size: 16px;
+  } 
+
+ }
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px){
+  .main form{
+    margin-top: 0%;
+  }
+  .main .button{
+    padding:  0 20px;
+    width: 90px;
+    font-size: 16px;
+  }
+
+ }
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) { 
+  .main form{
+    margin-top: 0%;
+  }
+  .main .button{
+    padding:  0 20px;
+    width: 110px;
+    font-size: 16px;
+  }
+
+  
+}

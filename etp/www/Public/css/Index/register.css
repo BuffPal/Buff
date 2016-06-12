@@ -1,0 +1,120 @@
+.main{
+  margin-top: 80px;
+  min-height: 600px;
+  position: relative;
+}
+.main div.img{
+  width: 100%;
+  min-height: 600px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: 1170px auto;
+  z-index: -5;
+}
+.main .form-group{
+  margin-bottom: 5px;
+}
+#img2{
+  width: 100%;
+  min-height: 600px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: 1170px auto;
+  z-index: -6;
+}
+.main form{
+  margin-top: 6%;
+}
+.main .row>div>img{
+  margin-left: 30%;
+}
+.main .info>div{
+  margin-left: 30%;
+}
+.main .info>div h2{
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+.main .info>div p{
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  font-size: 16px;
+}
+.main label{
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+.main .verify{
+  cursor: pointer;
+}
+.main .text{
+  background: rgba(255,255,255,.8);
+}
+/* 错误提示样式定义 */
+form[name=register] .form-group>div{
+  position: relative;
+}
+form[name=register] .form-group>div>span{
+  position: absolute;
+  left: 100%;
+  top: 18%;
+  width: 100%;
+}
+form[name=register] .form-group>div>span.error{
+  background: url(../../images/error.png) no-repeat 0 0;
+  background-size: 20px 20px;
+  text-indent: 2rem;
+  line-height: 20px;
+  padding-left: 2px;
+  text-shadow: 0px 0px 1px #CC8382;
+  font-size: 16px;
+  color: #AD4443;
+}
+form[name=register] .form-group>div>span.success{
+  width: 20px;
+  height: 40px;
+  background: url(../../images/success.png) no-repeat 0 0;
+  background-size: 20px 20px;
+  padding-left: 2px;
+}
+.main input.valid{
+  border: 1px solid #3C763D;
+  box-shadow: 0px 0px 5px #3c763d;
+  background: rgba(183,252,196,.8);
+}
+.main input.error{
+  border: 1px solid #A94442;
+  box-shadow: 0px 0px 5px #A94442;
+  background: rgba(250,204,204,.5);
+}
+.main em{
+  color: red;
+  text-shadow: none;
+}
+
+
+
+
+
+/* 响应式 */
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) { 
+  .main .form-group{
+    margin-bottom: 15px;
+  }
+
+ }
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px){
+
+
+ }
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) { 
+
+}

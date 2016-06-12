@@ -1,0 +1,22 @@
+
+h1{
+  text-align: center;
+}
+form{
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+form td{
+  display: block;
+  margin: 10px ;
+}
+form td>input{
+  width: 200px;
+  height: 40px;
+  font-size: 1.6rem;
+  text-indent: 5px;
+}
+form tr{
+  font-size: 1.8rem;
+}

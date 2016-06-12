@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>我的首页</title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Uploadify/uploadify.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/zoom/zoom.css">
+  <script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/Tool.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Uploadify/jquery.uploadify.min.js"></script>
+  <script type="text/javascript">
+    var checkNameUrl  = "{:U('checkName')}";
+    var sendCallUrl   = "{:U('sendCall')}";
+    var callDeleteUrl = "{:U('callDelete')}";
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/callMeList.js"></script>
+</head>
+<body>
+  <!-- 头部模板 -->
+   <include file="./Index/Home/View/default/Public/header.html" />
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/Theme/{$style}/css/callMeList.css">
+  <div id="main">
+    <div id="sdebar">
+      <ul class="top">
+        <li><i class="icon-home"></i><a href="{:U('Self/index')}">首页</a></li>
+        <li><i class="icon-mention"></i><a href="{:U('Self/atmeList')}">提到我的</a></li>
+        <li><i class="icon-comments"></i><a href="{:U('Self/commentList')}">评论</a></li>
+        <li><i class="icon-chat3"></i><a href="{:U('Self/callMeList')}">私信</a></li>
+        <li><i class="icon-star-empty"></i><a href="{:U('keepList')}">收藏</a></li>
+      </ul>
+      <h1>分组</h1>
+      <ul class="bottom" id="ulBottom">
+        <input type="hidden" name="nowGroup" value="">
+        <li><i class="icon-user-tie"></i><a href="{:U('Self/index')}" gid="0">全部</a></li>
+<volist name="group" id="v">
+        <li><i class="icon-user-tie"></i><a href="{:U('Self/index')}" gid="{$v.id}">{$v.name}</a></li>
+</volist>
+      </ul>
+      <a href="" id="addGroupAjax">创建新分组</a>
+      <input type="text" id="addGroupText">
+      <i class="icon-plus2" id="icon-plus2"></i>
+      <span id="Groupmsg">该分组已经存在</span>
+    </div>
+    <div id="mainRBox">
+      <div id="mainWB">
+        <h1 class="callMeListTitle"><span>您有 <strong>{$callCount}</strong> 条私信</span><a href="" class="callClick">发送私信</a></h1>
+        <ul id="callMeList">
+        <if condition="$callAll">
+          <foreach name="callAll" item='vo'>
+        <!-- 循环私信 -->
+            <li>
+              <div class="face">
+                <a href="{:U('/'.$vo['from']['uid'])}">
+                <img src="<if condition="$vo['from']['face']">__ROOT__{$vo['from']['face']}<else />__PUBLIC__/images/none.png</if>">
+                </a>
+              </div>
+              <div class="content">
+                <span class="name"><a href="{:U('/'.$vo['from']['uid'])}">{$vo['from']['username']}</a></span>
+                <span class="content">{$vo['content']}</span>
+                <span class="time">{$vo['timeStr']}　　　　　{$vo['time']}</span>
+              </div> 
+              <a href="#" class="callClick" fromName="{$vo['from']['username']}" fromId="{$vo['from']['uid']}">回复</a>
+              <span class="deleteCall"><a href="#" class="deleteCallClick" cid="{$vo.id}">删除</a></span>
+            </li>
+          </foreach>
+        <else />
+          <h1 id="notData">您暂时还没有收到私信哦</h1>
+        </if>
+
+        </ul>
+        <if condition="$page">
+          <div class="pages">{$page}</div>
+        </if>
+      </div>
+      <div id="userSet">
+       <div class="userIFM" value='{$userinfo["uid"]}'>
+         <div class="bg">
+           <img src="__PUBLIC__/images/self_set.jpg">
+           <a href="{:U('UserSetting/index')}/type/face" target="_blank"><img src="
+<if condition="$userinfo['face']">
+            __ROOT__{$userinfo.face}
+  <else />
+            __PUBLIC__/images/none.png
+</if>
+        "></a>
+         </div>
+         <span><a target="_blank" href="{:U('UserSetting/index')}" class="username">{$userinfo.username}</a></span>
+         <div class="ul">
+           <ul>
+             <li><a href="{:U('/follow/'.$userinfo["uid"])}"><p>{$userinfo.follow}</p><span>关注</span></a></li>
+             <li><a href="{:U('/fans/'.$userinfo["uid"])}"><p>{$userinfo.fans}</p><span>粉丝</span></a></li>
+             <li><a href="#"><p class="userWeibo">{$userinfo.weibo}</p><span>微博</span></a></li>
+           </ul>
+         </div>
+       </div>
+
+
+            <!-- 可能感兴趣的人 -->
+          <if condition="$resultI">
+          <div id="interest">
+            <span>可能感兴趣的人<a href="#">更多</a></span>
+              <volist name="resultI" id="vo">
+              <div class="interestLi">
+                <a href="{:U('/'.$vo['uid'])}" class="img">
+                  <img src="
+<if condition="$vo['face']">
+                  __ROOT__{$vo.face}
+  <else />
+                  __PUBLIC__/images/none.png
+</if>
+                  ">
+                </a>
+                <span class="name"><a href="{:U('/'.$vo['uid'])}">{$vo.username}</a>
+                <i class="<if condition="$vo['sex']!='男'">icon-male<else />icon-female</if>" style="color:
+<if condition="$vo['sex']!='男'">
+          #F18CAE
+<else />
+          #80D2F0
+</if>
+                "></i>
+                </span>
+                <span class="location">{$vo.location}<font><strong> {$vo.count} </strong>个共同好友</font></span>
+              </div>
+          </volist>
+          </div>
+          </if>
+            <!-- 热门话题 -->
+        <if condition="hotwb">
+          <div class="hotTopic">
+            <h1>热门话题</h1>
+            <ul>
+              <foreach name="hotwb"  item="vo">
+              <li><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}">{$vo.content|omitString=###,12}</a><span>{$vo.comment}</span></li>
+              </foreach>
+            </ul>
+          </div>
+        </if>
+      </div>
+    </div>
+  </div>
+    <!-- 尾部样式 -->
+  <include file="./Index/Home/View/default/Public/footer.html" />
+  <a href="#mainRBox" id="return"><i class="icon-rocket"></i></a>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/zoom/zoom.js"></script>
+<script type="text/javascript" src="__PUBLIC__/zoom/bootstrap.min.js"></script>
+<!-- 私信弹出框 -->
+<div id="callMeBox">
+  <h1 id="callMeMove">发送私信</h1>
+  <input type="hidden" name="callCheckName" value="0">
+  <div class="callName"><span>用户名</span><input type="text" name="callName" value=""><strong id="callNameTishi"></strong></div>
+  <span>私信内容:</span>
+  <div class="callContent"><textarea name="callContent"></textarea></div>
+  <div class="send"><span class="send" fid="0">发送</span><span class="x">取消</span></div>
+</div>

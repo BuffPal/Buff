@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+
+<body>
+    <!-- 头像上传裁剪插件 这里与bootstrap冲突了 这里让他放上面 在自己的样式在调-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/plug-in/cropbox.css">
+    <!-- 头部 -->
+    <include file="Public/nav" />
+    <!-- 自己的样式 -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Index/userSetting.css">
+    <script type="text/javascript">
+    var checkUsernameUrl = "{:U('checkUsername')}"; //AJAX验证用户昵称是否存在
+    </script>
+    <div class="container" id="userpic">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="<if condition='$path'>/{$path}<else />__PUBLIC__/Images/Index/none.png</if>" class="userpic" data-toggle="modal" data-target="#modalPic">
+            </div>
+        </div>
+    </div>
+    <div class="container" id="userSetting">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default" style="margin-top: 0;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a href="#collapse1" class="button button-block button-rounded  button-large button-small" data-toggle="collapse" data-parent="#accordion">基本信息</a>
+               </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="container-fulid">
+                            <form class="form-horizontal" action="{:U('saveBasic')}" method="post" name="save" id="save">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-5 control-label">用户昵称<i style="color: red;">*</i><em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="username" type="text" name="username" class="form-control text" placeholder="请输入您的昵称" value="{$userinfo.username}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="truename" class="col-sm-5 control-label">真实名称<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="truename" type="text" name="truename" class="form-control text" placeholder="请输入您的真实昵称" value="{$userinfo.truename}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">所在地<em>　:</em></label>
+                                    <div id="city">
+                                        <select class="prov" name="location[]"></select>
+                                        <select class="city" disabled="disabled" name="location[]"></select>
+                                        <select class="dist" disabled="disabled" name="location[]"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">性别<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="inlineRadio1" value="0" <if condition='$userinfo["sex"]'>
+                                            <else />checked</if>> 男
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="inlineRadio2" value="1" <if condition='$userinfo["sex"]'>checked
+                                            <else />
+                                            </if>> 女
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="truename" class="col-sm-5 control-label">生日<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <select id="select_year" rel="{$userinfo.day.0}" name="day[]"></select>年
+                                        <select id="select_month" rel="{$userinfo.day.1}" name="day[]"></select>月
+                                        <select id="select_day" rel="{$userinfo.day.2}" name="day[]"></select>日
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intro" class="col-sm-5 control-label">一句话介绍自己<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <textarea name="intro" id="intro" class="form-control" placeholder=" 请不要超过 70 个字">{$userinfo.intro}</textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="intro" class="col-sm-5 control-label"><em></em></label>
+                                    <div class="col-sm-12">
+                                        <strong class="lianxi">联系信息</strong>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blog" class="col-sm-5 control-label">博客地址<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="blog" type="text" name="blog" class="form-control text" placeholder="请输入博客地址" value="{$userinfo.blog}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="msn" class="col-sm-5 control-label">MSN<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="msn" type="text" name="msn" class="form-control text" placeholder="请输入MSN地址" value="{$userinfo.msn}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qq" class="col-sm-5 control-label">QQ<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="qq" type="text" name="qq" class="form-control text" placeholder="请输入QQ号" value="{$userinfo.qq}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qq" class="col-sm-5 control-label"><em></em></label>
+                                    <div class="col-sm-3">
+                                        <button id="submita" class="button button-3d button-primary button-rounded">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 第二部分 -->
+            <div class="panel panel-default" style="margin-top: 0;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a href="#collapse2" class="button button-block button-rounded  button-large button-small" data-toggle="collapse" data-parent="#accordion">收藏的音乐</a>
+               </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        暂未实现该功能
+                    </div>
+                </div>
+            </div>
+            <!-- 第三部分 -->
+            <div class="panel panel-default" style="margin-top: 0;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a href="#collapse3" class="button button-block button-rounded  button-large button-small" data-toggle="collapse" data-parent="#accordion">收藏的电影</a>
+               </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        暂未实现该功能
+                    </div>
+                </div>
+            </div>
+            <!-- 第四部分 -->
+            <div class="panel panel-default" style="margin-top: 0;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a href="#collapse4" class="button button-block button-rounded  button-large button-small" data-toggle="collapse" data-parent="#accordion">收藏的文章</a>
+               </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        暂未实现该功能
+                    </div>
+                </div>
+            </div>
+            <!-- 第五部分 -->
+            <div class="panel panel-default" style="margin-top: 0;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a href="#collapse5" class="button button-block button-rounded  button-large button-small" data-toggle="collapse" data-parent="#accordion">修改密码</a>
+               </h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="container-fulid">
+                            <form class="form-horizontal" action="{:U('revisePW')}" method="post" name="revisePW" id="revisePW">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-5 control-label">电子邮箱<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="username" type="text" name="username" class="form-control text" disabled value="{$email}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="oldPassword" class="col-sm-5 control-label">旧密码<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="oldPassword" type="password" name="oldPassword" class="form-control text" placeholder="请输入您的旧密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword" class="col-sm-5 control-label">新密码<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="newPassword" type="password" name="newPassword" class="form-control text" placeholder="请输入您的新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newNotPassword" class="col-sm-5 control-label">确认密码<em>　:</em></label>
+                                    <div class="col-sm-3">
+                                        <input id="newNotPassword" type="password" name="newNotPassword" class="form-control text" placeholder="请再次确认您的密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label"></label>
+                                    <div class="col-sm-3">
+                                        <input type="submit" value="修改" class="button button-3d button-primary button-rounded">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 头像上传专用模态框 -->
+    <div class="modal  fade" id="modalPic" tabindex="-1">
+        <div class="modal-dialog picDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title text-center text-info">头像设置</h4>
+                </div>
+                <div class="modal-body picBody">
+                    <div class="container-fulid">
+                        <div class="imageBox">
+                            <div class="thumbBox"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div>
+                        <div class="action">
+                            <!-- <input type="file" id="file" style=" width: 200px">-->
+                            <div class="new-contentarea tc">
+                                <a href="javascript:void(0)" class="upload-img">
+                                    <label for="upload-file">上传图像</label>
+                                </a>
+                                <input type="file" class="" name="upload-file" id="upload-file" />
+                            </div>
+                            <input type="button" id="btnCrop" class="Btnsty_peyton" value="裁切">
+                            <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                            <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                        </div>
+                        <div class="cropped">
+                            <img src="<if condition='$path'>/{$path}<else />__PUBLIC__/Images/Index/none.png</if>" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;">
+                            <p>64px*64px</p>
+                            <img src="<if condition='$path'>/{$path}<else />__PUBLIC__/Images/Index/none.png</if>" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;">
+                            <p>128px*128px</p>
+                            <img src="<if condition='$path'>/{$path}<else />__PUBLIC__/Images/Index/none.png</if>" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;">
+                            <p>180px*180px</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <a class="button" data-toggle="modal" data-target="#modalPic">点击</a> -->
+    <!-- 尾部 -->
+    <include file="Public/footer" />
+    <!-- 头像上传裁剪插件 -->
+    <script type="text/javascript" src="__PUBLIC__/js/plug-in/cropbox.js"></script>
+    <script type="text/javascript">
+    var path = "{$path}"; //数据库取出来的地址
+    var uploadFaceUrl = "{:U('Common/uploadFace')}"; //后台ajax更新头像
+    </script>
+    <!-- 引入jquery.city城市联动 -->
+    <script type="text/javascript">
+    var cityselectUrl = '__PUBLIC__/js/plug-in/city.min.js'; //引入城市联动需要的json数据
+    var home = '{$userinfo.location}'; //用户的默认地址放这里,在city.js里面写了自动转换
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.cityselect.js"></script>
+    <script type="text/javascript">
+    $("#city").citySelect(); //调用城市联动
+    </script>
+    <!-- 引入生日联动 也就是日期联动 -->
+    <script type="text/javascript" src="__PUBLIC__/js/plug-in/birthday.js"></script>
+    <script type="text/javascript">
+    $.ms_DatePicker({
+        YearSelector: "#select_year",
+        MonthSelector: "#select_month",
+        DaySelector: "#select_day"
+    });
+    </script>
+    <!-- validate验证 -->
+    <script type="text/javascript" src="__PUBLIC__/js/plug-in/validate.js"></script>
+    <!-- 自己的js -->
+    <script type="text/javascript" src="__PUBLIC__/js/Index/userSetting.js"></script>
+</body>
+
+</html>

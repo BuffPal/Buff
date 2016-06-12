@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>微博找人</title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/style.css">
+  <script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/Tool.js"></script>
+  <script type="text/javascript">
+    var addGroupUrl  = "{:U('Common/addGroup')}";
+    var addFollowUrl = "{:U('Common/addFollow')}";
+    var unFollowUrl  = "{:U('Common/unFollow')}";
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/search.js"></script>
+
+</head>
+<body>
+  <include file="./Index/Home/View/default/Public/header.html" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Theme/{$style}/css/serch.css">
+  <div id="main">
+    <div id="top">
+      <img src="__PUBLIC__/images/baidulogo.png" id="LOGO">
+      <span id="sosoren">
+        <a href="{:U('search')}/keyword/{$keyword}">综合</a>
+        <a href="{:U('searchren')}/keyword/{$keyword}" class="click">找人</a>
+        <a href="#">图片</a>
+        <a href="#">主页</a>
+      </span>
+    </div>
+    <nav>
+      <form action="{:U('searchren')}" method="get">
+      <input type="text" name="keyword" value="{$keyword}" id="keyword">
+      <input type="submit" value="搜　索" id="keywordSend">
+      </form>
+      <span>
+        <a href="#">高级搜索</a>
+        <a href="#">设置</a>
+        <a href="#">帮助</a>
+      </span>
+    </nav>
+
+
+    <div id="news">
+<if condition="$result">
+<volist name="result" id="vo">
+      <div class="getone">
+        <a href="" class="img">
+          <img src="
+  <if condition="$vo['face']">
+            __ROOT__{$vo['face']}
+    <else />
+            __PUBLIC__/images/none.png
+  </if>
+          ">
+        </a>
+        <p class="star_name"><a href="{:U('/'.$vo['uid'])}">{$vo.username|str_replace=$keyword,'<span style="color:orangered;">'.$keyword.'</span>',###} </a><i class="icon-medal5"></i></p>
+        <p class="star_card"><i class="
+    <if condition="$vo['sex']!='男'">
+          icon-male
+      <else />
+          icon-female
+    </if>
+      " style="color: 
+    <if condition="$vo['sex']!='男'">
+          #F18CAE
+      <else />
+          #80D2F0
+    </if>
+        "></i> {$vo.location} <a href="">www.weibo.com</a></p>
+        <p class="star_info">{$vo.intro|str_replace=$keyword,'<span style="color:orangered;">'.$keyword.'</span>',###}</p>
+        <p class="star_num">
+          <span>关注<a href="#"> {$vo.follow}</a></span>
+          <span>　粉丝<a href="#" class="fansCount"> {$vo.fans}</a></span>
+          <span>　微博<a href="#"> {$vo.weibo}</a></span>
+        </p>
+        <input type="hidden" name="LoginVerify" value="1">
+        <p class="newwb"><a href="">最新微博</a> : <a href="#" class="title">三分命中率报表</a></p>
+        <input type="button" value="<if condition="$vo['mutual']==2">互相关注<elseif condition="$vo['mutual'] eq 1"/>已关注<else />关注</if>" class="
+           <if condition="$vo['mutual']!=0">
+                  mutual
+           </if>
+         operation" uid='{$vo.uid}' status="{$vo.mutual}">
+      </div>
+</volist>     
+        <div class="pages">{$page}</div>
+<else />
+    <div class="noneUser">未找到有关 <strong>{$keyword}</strong> 相关的数据</div>
+</if>
+       
+  </div>
+
+ 
+
+
+    <div id="sidebar">
+      <if condition="hotwb">
+      <!-- 实时热搜榜(其实就是点击量) -->
+      <div id="hotTime">
+        <span>实时热搜榜<a href="#">更多</a></span>
+        <ol>
+          <foreach name="hotwb"  item="vo">
+            <li><b style="color: rgb(255,{$key*20},{$key*20})">{$key+1}.</b><span>{$vo.comment}</span><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}">{$vo.content|omitString=###,15}</a></li>
+          </foreach>
+        </ol>
+      </div>
+      <!-- ////实时热搜榜(其实就是点击量) -->
+      </if>
+    </div>
+  </div>
+   <!-- ============================隐藏转发输入框  复制过来的========================== -->
+<php>
+  $group = M('group')->where(array('uid'=>session('uid')))->select();
+</php>
+  <div id="hiddenOperationBoxS">
+    <div class="content">
+      <div class="moverHidOper"></div>
+      <h1><span>关注好友</span></h1>
+      <div class="footer">
+        <span class="select">
+          <p>好友分组:　</p>
+          <select name="night" id="group">
+                <option selected="selected" value="0">默认分组</option>
+<volist name="group" id="v">
+                <option value="{$v.id}">{$v.name}</option>
+</volist>
+
+          </select>
+          还没有分组?<a href="#" class="addGroup">点击添加</a>
+          <input type="text" name="add" id="addText">
+          <span id="addGroupBtn">添加</span>
+        </span>
+        <input type="hidden" name="follow" value="">
+        <input type="button" value="取消" class="icon-cross">
+        <input type="submit" value="关注" name="btn" id="addFollowBtn">
+      </div>
+    </div>
+  </div>
+    <!-- 尾部样式 -->
+  <include file="./Index/Home/View/default/Public/footer.html" />
+</body>
+</html>

@@ -1,0 +1,175 @@
+/*因为图片上传样式和bootstrap有冲突 这里调整css样式*/
+
+.navbar>div {
+    margin-top: 0;
+}
+
+.picDialog {
+    width: 650px;
+}
+
+.picBody {
+    height: 500px;
+}
+
+div.cropped {
+    padding: 0;
+    left: 430px;
+    top: 15px;
+    position: absolute;
+}
+
+.footer p {
+    height: auto;
+    line-height: 100%;
+    color: #777777;
+    font-size: 14px;
+}
+
+.footer a {
+    font-size: 14px;
+}
+
+
+/* 正式布局开始 */
+
+#userpic {
+    margin-top: 80px;
+}
+
+img.userpic {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 5px #333;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+img.userpic:hover {
+    box-shadow: 0px 0px 20px #ff4400;
+}
+
+
+/* 手风琴样式 */
+
+.panel-heading {
+    padding: 0;
+}
+
+.panel-default {
+    margin-top: 0;
+}
+
+.panel-title>a {
+    font-size: 18px;
+    color: #999;
+    letter-spacing: 1rem;
+}
+
+.lianxi {
+    font-size: 25px;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#intro {
+    resize: none;
+    width: 250px;
+    height: 120px;
+}
+
+
+/*validate错误样式定义*/
+
+
+/* 错误提示样式定义 */
+
+form[name=save] .form-group>div {
+    position: relative;
+}
+
+form[name=save] .form-group>div>span {
+    position: absolute;
+    left: 100%;
+    top: 18%;
+    width: 100%;
+}
+
+form[name=save] .form-group>div>span.error {
+    background: url(../../images/error.png) no-repeat 0 0;
+    background-size: 20px 20px;
+    text-indent: 2rem;
+    line-height: 20px;
+    padding-left: 2px;
+    text-shadow: 0px 0px 1px #CC8382;
+    font-size: 16px;
+    color: #AD4443;
+}
+
+form[name=save] .form-group>div>span.success {
+    width: 20px;
+    height: 40px;
+    background: url(../../images/success.png) no-repeat 0 0;
+    background-size: 20px 20px;
+    padding-left: 2px;
+}
+
+input.valid {
+    border: 1px solid #3C763D;
+    box-shadow: 0px 0px 5px #3c763d;
+    background: rgba(183, 252, 196, .8);
+}
+
+input.error {
+    border: 1px solid #A94442;
+    box-shadow: 0px 0px 5px #A94442;
+    background: rgba(250, 204, 204, .5);
+}
+
+
+/* 错误提示样式定义 */
+
+form[name=revisePW] .form-group>div {
+    position: relative;
+}
+
+form[name=revisePW] .form-group>div>span {
+    position: absolute;
+    left: 100%;
+    top: 18%;
+    width: 100%;
+}
+
+form[name=revisePW] .form-group>div>span.error {
+    background: url(../../images/error.png) no-repeat 0 0;
+    background-size: 20px 20px;
+    text-indent: 2rem;
+    line-height: 20px;
+    padding-left: 2px;
+    text-shadow: 0px 0px 1px #CC8382;
+    font-size: 16px;
+    color: #AD4443;
+}
+
+form[name=revisePW] .form-group>div>span.success {
+    width: 20px;
+    height: 40px;
+    background: url(../../images/success.png) no-repeat 0 0;
+    background-size: 20px 20px;
+    padding-left: 2px;
+}
+
+input.valid {
+    border: 1px solid #3C763D;
+    box-shadow: 0px 0px 5px #3c763d;
+    background: rgba(183, 252, 196, .8);
+}
+
+input.error {
+    border: 1px solid #A94442;
+    box-shadow: 0px 0px 5px #A94442;
+    background: rgba(250, 204, 204, .5);
+}

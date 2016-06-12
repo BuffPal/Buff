@@ -1,0 +1,182 @@
+/* 左侧手风琴 */
+#accordion>div>div:nth-child(1){
+  border-radius:5px 5px 0 0;
+  padding: 0;
+}
+#accordion>div{
+  margin-top: 0;
+}
+#accordion h4{
+  border-radius:5px 5px 0 0;
+}
+#accordion h4>a{
+  border-radius:5px 5px 0 0;
+  display: block;
+  width: 100%;
+  padding: 10px 5px;
+  height: 100%;
+  text-align: left;
+  text-indent: 2rem;
+  position: relative;
+}
+#accordion h4>a:hover{
+  color: #333;
+  text-decoration: none;
+}
+#accordion h4>a>span.animation{
+  transform: rotateZ(0deg);
+}
+#accordion h4>a>span{
+  position: absolute;
+  top: 25%;
+  left: 80%;
+  color: #888;
+  text-indent: 0rem;
+  transform: rotateZ(180deg);
+  transition: .5s;
+}
+
+
+#accordion ul{
+  padding: 0;
+  list-style-type: none;
+}
+#accordion ul a>img.active{
+  box-shadow: 20px 1px 50px #369B34;
+}
+#accordion ul li{
+  padding-bottom: 3px;
+  margin-top: 5px;
+  border-bottom: 1px solid #eee;
+}
+#accordion ul a>img{
+  width: 40px;
+  border-radius: 3px;
+}
+#accordion ul div.media-body>a{
+  color: rgba(0,0,0,0.7);
+  line-height: 40px;
+  font-size: 15px;
+}
+
+/* 右侧列表 lists */
+.main .row{
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+}
+.main .row>p{
+  display: block;
+  height: 40px;
+  text-align: center;
+  font-size: 28px;
+  background: #fff;
+  letter-spacing: 5px;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px #ddd;
+  padding: 10px 0;
+  line-height: 30px;
+  background-image: url(../../images/Index/pingpu.jpeg);
+  background-size: 300px 300px ;
+  font-family: '华文新魏';
+  color: #ffaa00;
+  text-shadow: 0px 0px 2px #000;
+}
+.main td.OP>span{
+  display: block;
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #888;
+  transition: .5s;
+  font-size: 12px;
+}
+.main td.OP>span:hover{
+  color: #ffaa00;
+}
+.main thead th{
+  color: #777;
+  font-size: 12px;
+}
+.main tbody tr>td:nth-child(1){
+  color: #999;
+}
+.main tbody tr>td:nth-child(2)>a{
+  color: #333;
+  transition: .4s;
+}
+.main tbody tr>td:nth-child(2)>a:hover{
+  color: #436EF4;
+}
+.main tbody tr>td:nth-child(3)>a{
+  color: #333;
+  transition: .4s;
+}
+.main tbody tr>td:nth-child(3)>a:hover{
+  color: #436EF4;
+}
+.main tbody tr>td:nth-child(4){
+  color: #666;
+}
+.main tbody tr>td:nth-child(4)>span{
+  color: #C43939;
+}
+.main tbody tr{
+  transition: .5s;
+}
+.main tbody tr:hover{
+  background: #EDF9FF;
+}
+/* AJAX加载显示 */
+@keyframes loading{/*歌单出场动画*/
+    0%{transform:rotateZ(0deg);}
+    100%{transform:rotateZ(360deg);}
+}
+.loading{
+  font-size: 50px;
+  color: #888;
+  text-align: center;
+}
+.loading>span.animation{
+    animation: loading .5s infinite linear;
+    font-size: 60px;
+    color: #fff;
+    text-shadow: 0px 0px 2px #000;
+}
+
+
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) { 
+.main thead th{
+  color: #777;
+  font-size: 16px;
+}
+.main td.OP>span{
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+
+ }
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) { 
+
+
+
+
+ }
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) { 
+
+
+
+
+
+
+
+
+
+ }

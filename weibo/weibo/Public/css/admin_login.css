@@ -1,0 +1,46 @@
+/*************************************************************后台登录 Login **********************************************/
+#admin_login{
+  width: 350px;
+  margin: 100px auto;
+  color: #666;
+  font-size: 14px;
+}
+#admin_login fieldset{
+  padding: 20px;
+
+}
+#admin_login legend{
+  font-size: 16px;
+  font: bold;
+}
+#admin_login label{
+  display: block;
+  margin: 8px 0;
+}
+#admin_login label input.text{
+  width: 220px;
+  height: 27px;
+  border:1px solid #666;
+  background: #eee;
+}
+#admin_login .t{
+  color: #999;
+  text-indent: 70px;
+}
+#admin_login label img{
+  width: 180px;
+  height: 80px;
+  margin: 0  0  0 70px;
+  cursor: pointer;
+
+}
+#admin_login .submit{
+  font-family: '微软雅黑';
+  text-align: center;
+  text-height: 40px;
+  font-size: 20px;
+  width: 70px;
+  height: 40px;
+  margin:  0 0 0 43%;
+  cursor: pointer;
+}

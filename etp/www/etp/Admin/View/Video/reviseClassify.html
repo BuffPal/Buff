@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <style type="text/css">
+  #videoPosterTestBox{
+    position: absolute;
+    width: 204px;
+    height: 304px;
+    top: 0;
+    left: 110%;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #888;
+    <if condition="$classify['faceurl']"><else />
+    display:none;
+    </if>
+  }
+
+  </style>
+
+<!-- 引入头文件 -->
+<include file='Public/header' />
+
+<div class="container-fulid">
+  <ul class="breadcrumb">
+    <li>
+      <a href="#">视频管理</a> <span class="divider">/</span>
+    </li>
+
+
+    <li>
+      <a href="{:U('classify')}">分类列表</a> <span class="divider">/</span>
+    </li>
+
+
+    <li class="active">
+      修改分类
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <h1 class="text-center">修改分类</h1>
+</div>
+ <form action="{:U('reviseClassify')}" method="post" class="form-horizontal col-md-12">
+
+        <div class="form-group">
+          <label for="" class="col-sm-5 control-label"><em></em></label>
+          <div class="col-sm-2" style="font-size: 25px;">
+            父级分类<em>:</em>
+            <if condition='$fid["name"]' >
+            <a href="{:U('classify',array('id'=>$id))}">{$fid.name}</a>
+            <else />
+            根元素
+            </if>
+
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <label for="name" class="col-sm-5 control-label">分类名<em>*</em></label>
+          <div class="col-sm-2" style="position: relative;">
+            <input id="name" type="text" name="name" class="form-control text" placeholder="请保持在20位之内" value="{$classify.name}">
+            <div id="videoPosterTestBox">
+              <img src="{$classify.faceurl}" alt="" id="videoPosterTest">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="info" class="col-sm-5 control-label">简介<em>*</em></label>
+          <div class="col-sm-2">
+          <textarea id="info"  name="info" class="form-control text" placeholder="请保持在200位之内" style="resize: none;height: 200px;">{$classify.info}</textarea>
+          </div>
+        </div>  
+
+        <div class="form-group">
+          <label for="info" class="col-sm-5 control-label">标准200X300<em></em></label>
+          <div class="col-sm-2">
+              <input type="file" name="face" id="face">
+              <input type="hidden" name="faceurl" value="{$classify.faceurl}">
+              <input type="hidden" name="faceurl100x150" value="{$classify.faceurl100x150}">
+              <input type="hidden" name="fid" value="{$fid.id}">
+              <input type="hidden" name="id" value="{$classify.id}">
+          </div>
+        </div>      
+
+        <div class="form-group">
+          <label for="info" class="col-sm-5 control-label"><em></em></label>
+          <div class="col-sm-2">
+            <input type="submit" value="添加" class="button button-3d button-primary button-rounded">
+          </div>
+        </div>          
+
+ </form>
+
+<!-- 引入尾文件 -->
+<include file='Public/footer' />
+<script type="text/javascript">
+  $('input[type=submit]').click(function(){
+    var name = $('input[name=name]').val();
+    var info = $('textarea[name=info]').val();
+    if($.trim(name) =='' || $.trim(info) ==''){
+        alert('请填写完后在添加!');
+        return false;
+    }
+  });
+  /**
+   * uploads上传插件配置
+   */
+  $('#face').uploadify({
+    //引入flash动画
+    swf : PUBLIC + '/Uploadify/uploadify.swf',
+    //php处理地址
+    uploader : "{:U('Common/uploadVideoPoster')}",
+    width:120,
+    height:32,
+    //按钮背景图片定义[可选]
+    buttonImage:PUBLIC+'/Uploadify/browse-btn.png',//貌似很诡异
+    //选择文件提示文字
+    fileTypeDesc : 'Image File',
+    //允许选择的文件类型
+    fileTypeExts : '*.jpeg;*.jpg;*.png;*.gif',
+    //解决报错 302错误,因为CommonController里面自动验证session存在的函数,导致报302错误,因为不发过去session
+    ////发送额外的参数过去
+    formData : {
+      //var sid = "{:session_id()}";//获取当前session的值,因为uploadify发过去的数据不带session而CommonController里面又有判断session存不存在的函数,会导致报302错误(没权限)
+      'session_id':"{:session_id()}",
+      'id':"{$classify.id}"
+    },
+    //回调函数
+    ////file 返回文件名 , data返回php的数据 response不知道
+    onUploadSuccess:function(file,data,response){
+       eval('var data =' + data);//这步是关键,至今不懂为什么.反正不写就是不能用
+        if(data.status){
+
+          $('input[name=faceurl]').val(data.facePath);
+          $('input[name=faceurl100x150]').val(data.pathmd);
+          $('#videoPosterTest').attr({'src':data.facePath});
+          $('#videoPosterTestBox').fadeIn();
+        }else{
+          tishi(data.msg);
+        }
+    }
+  });
+
+</script>
+
+</body>
+</html>

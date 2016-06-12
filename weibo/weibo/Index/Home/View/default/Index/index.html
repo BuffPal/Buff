@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>个人微博</title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/style.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/zoom/zoom.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Uploadify/uploadify.css">
+  <script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+  <script type="text/javascript">
+    var praiseAjaxUrl  = "{:U('Self/praiseAjax')}";//点赞后 AJAX后台更新
+    var CommentUrl     = "{:U('Self/Comment')}";//ajax 评论处理
+    var CommentListUrl = "{:U('Self/getComentAll')}";//ajax后台取来评论列表
+    var LoginUrl = "{:U('Login/index')}";//登陆页面跳转地址
+    var addFollowUrl = "{:U('Common/addFollow')}";//添加关注
+    var unFollow     = "{:U('Common/unFollow')}";//取消关注
+    var addGroupUrl  = "{:U('Common/addGroup')}";//添加组
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/Tool.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/header.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/index.js"></script>
+</head>
+<body>
+<!-- ============================header include 用========================== -->
+  <include file="./Index/Home/View/default/Public/header.html" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Theme/{$style}/css/index.css">
+  <div id="main">
+  <!-- ============================用户头部========================== -->
+    <div class="header">
+      <div class="userInfo">
+        <div class="userPic">
+          <img src="__PUBLIC__/images/user_bg.jpg" class="userBg">
+          <a href="#"><img src="
+          <if condition="$userinfo['face']">
+            __ROOT__{$userinfo.face}
+          <else />
+            __PUBLIC__/images/none.png
+          </if>
+          " class="userHeaderPic"></a>
+          <a href="#"><h1 class="userName">{$userinfo.username}</h1></a>
+          <a href="#"><span>
+          <if condition="$userinfo['intro']">
+          {$userinfo.intro}
+          <else />
+            点击修改您的个人介绍~
+          </if>
+          </span></a>
+          <input type="button" value="<if condition="$userinfo['mutual'] eq 0">+关注<elseif condition="$userinfo['mutual'] eq 2" />互相关注<else />已关注</if>" class="btn <if condition="$userinfo['mutual'] neq 0">selected</if>" mutual="{$userinfo.mutual}" uid="{$userinfo.uid}">
+        </div>
+        <div class="society">
+          <div class="fans">
+            <span class="fansCount">粉丝列表</span>
+            <ul class="fansSmallInfo">
+              <foreach name='fansData' item='vo'>
+                <li>
+                <a href="{:U('/' . $vo['uid'])}"><img src="<if condition="$vo['face']">__ROOT__{$vo['face']}<else />__PUBLIC__/images/none.png</if>"></a>
+                  <span><a href="">{$vo.username}</a></span>
+                </li>
+              </foreach>
+            </ul>
+          </div>
+          <div class="newRelease">
+            <a href="#">最新动态</a>
+            <if condition="$newsCount egt 4">
+              <div class="newReleasePage">
+                <a href="#" value="-1">
+                  <i class="icon-circle-right"></i>
+                </a>
+                
+                <a href="#" value="1">
+                  <i class="icon-circle-left"></i>
+                </a>
+              </div>
+            </if>
+          </div>
+          <div class="newReleaseInfo">
+            <ul class="thumbnail" style="left: -2px;">
+              <if condition="$news">
+                <foreach name="news" item="vo">
+                  <li>
+                    <a href="{:U('/discuss/'.$vo['wid'])}" class="thumbnail" target="_blank"><img src="__ROOT__{$vo.mini}" alt="" ></a>
+                    <div class="thumbnailInfo">
+                      <a href="{:U('/discuss/'.$vo['wid'])}" class="thumbnailInfo" target="_blank">{$vo.content|replace_weibo=###,false}</a>
+                    </div>
+                  </li>
+                </foreach>
+              </if>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="userNav">
+          <ul>
+            <li><a href="" class="click">他的首页</a></li>
+            <li><a href="">他的相册</a></li>
+            <li><a href="">他的作品</a></li>
+          </ul>
+      </div>
+    </div>
+     <!-- ============================用户微博========================== -->
+    <input type="hidden" name="LoginVerify" value="1">
+    <div id="mainWB">
+     <div class="blog">
+      <ul id="blogUl">
+<if condition="$resultAll">
+<volist name="resultAll" id="vo"> <!-- 微博循环 -->
+<if condition='!$vo["isturn"]'> <!-- 判断是否是转发微博 -->
+        <li>
+        <a href="{:U('/'.$vo['uid'])}" class="blogUserPica"><img src="
+<if condition="$vo['face']">
+          __ROOT__{$vo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+        " class="blogUserPic"></a>
+         <article class="excerpt">
+          <header>
+            <h4 class="userIFM" value="{$vo['uid']}">
+              <a href="{:U('/'.$vo['uid'])}" class="userName">{$vo.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+            </h4>
+           <div class="timeIFM"><i class="icon-clock"> 
+                  {$vo.timeStr}
+           <span class="hiddenTime">{$vo.time}</span></i>　　来自可以防弹的手机</div>
+          </header>
+          <p class="blogContent">
+            {$vo.content|replace_weibo=###}
+          </p>
+          <div class="userUploadImg">
+<if condition="$vo['mini']">
+            <img src="__ROOT__{$vo.max}" data-action="zoom">
+</if>
+          </div>
+          <footer>
+            <ul class="operation">
+              <li><a href="#" wid="{$vo.id}" class="keep"><i class="icon-star-empty">　<span>收藏</span></i></a></li>
+              <li><a href="#" class="operation" alt="{$vo.id}" id="{$vo.id}"><i class="icon-redo2">　<span>{$vo.turn}</span></i></a></li>
+              <li><a href="#" class="praiseE" wid="{$vo['id']}"><i class="icon-fire">　<span>{$vo.praise}</span></i></a></li>
+              <li><a href="#" class="commentE" wid="{$vo['id']}"><i class="icon-chat">　<span>{$vo.comment}</span></i></a></li>
+            </ul>
+          </footer>
+         </article>
+<!-- 评论 -->
+        <div class="comment">
+          <div class="publish">
+            <div class="input">
+              <img src="
+<if condition="$userUid['face']">
+          __ROOT__{$userUid['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+              ">
+              <input type="text" name="comment" id="{$vo.id}" sign="phiz{$vo.id}">
+            </div>
+            <div class="phiz">
+              <i class="icon-smile" id="icon-smileComment" name='reply' sign="phiz{$vo.id}"> </i>
+              <span class="commentE">评论</span>
+            </div>
+          </div>
+          <div class="animate"><i class="icon-spinner6"></i></div>
+          <div class="list_ul">
+  <!-- 用户评论 -->      
+  <!-- /用户评论 -->
+          </div>
+          <div class="moreReply"><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}" target="_blank"></a></div>
+        </div>
+<!-- 评论结束/ -->
+        </li>
+<else /><!-- 是转发的循环转发样式 -->
+
+<!-- ============================转发微博========================== -->
+        <li class="forwarding">
+        <a href="{:U('/'.$vo['uid'])}" class="blogUserPica" target="_blank"><img src="
+<if condition="$vo['face']">
+          __ROOT__{$vo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+        " class="blogUserPic"></a>
+         <article class="excerpt">
+          <header>
+            <h4 class="userIFM" value="{$vo['uid']}">
+              <a href="{:U('/'.$vo['uid'])}" class="userName"  target="_blank">{$vo.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+            </h4>
+           <div class="timeIFM"><i class="icon-clock"> {$vo.timeStr}<span class="hiddenTime">{$vo.time}</span></i>　　来自可以防弹的手机</div>
+          </header>
+          <p class="blogContent">
+            {$vo.content|str_replace='//','<span  style="color: #bbb;font-size: 12px;font-weight: bold;">//</span >',###|replace_weibo=###}
+          </p>
+
+<if condition="$vo['isturn'] eq -1">
+    <span class="deleteNotWb">用户转发的微博已被删除~</span>
+<else />
+          <div class="userforwarding">
+            <h4 class="userIFM">
+              <a href="{:U('/' . $vo['isturn']['uid'])}" class="userNameisturn" name="{$vo.isturn.uid}" target="_blank">{$vo.isturn.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+            </h4>
+            <p class="forwardingContent">
+              {$vo.isturn.content|replace_weibo=###}
+            </p>
+            <div class="forwardingUploadImg">
+<if condition="$vo['isturn']['max']">
+            <img src="__ROOT__{$vo.isturn.max}"  data-action="zoom">
+</if>
+            </div>
+            <div class="forwardingIFM">
+              <span class="forwardingTime">{$vo.isturn.time|date='Y-m-d H:i:s',###}</span>
+              <ul class="forwardingCount">
+                <li><a href="#" class="operation" yid={$vo.isturn.id}><i class="icon-redo2"></i>　<span>{$vo.isturn.turn}</span></a></li>
+                <li><a href="#" class="praise"><i class="icon-fire"></i>　<span>{$vo.isturn.praise}</span></a></li>
+                <li><a href="#"><i class="icon-chat"></i>　<span>{$vo.isturn.comment}</span></a></li>
+              </ul>
+            </div>
+          </div>
+</if>
+          <footer>
+            <ul class="operation">
+              <li><a href="#" wid="{$vo.id}" class="keep"><i class="icon-star-empty">　收藏</i></a></li>
+              <li><a href="#" class="operation" id="{$vo.id}" tid="{$vo.isturn.id}"><i class="icon-redo2">　<span>{$vo.turn}</span></i></a></li>
+              <li><a href="#" class="praiseE" wid="{$vo.id}"><i class="icon-fire">　<span>{$vo.praise}</span></i></a></li>
+              <li><a href="#" class="commentE" wid="{$vo['id']}"><i class="icon-chat">　<span>{$vo.comment}</span></i></a></li>
+            </ul>
+          </footer>
+         </article>
+<!-- 评论 -->
+        <div class="comment">
+          <div class="publish">
+            <div class="input">
+              <img src="        
+<if condition="$userUid['face']">
+          __ROOT__{$userUid['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+          ">
+          <input type="text" name="comment" id="{$vo.id}" sign="phiz{$vo.id}">
+            </div>
+            <div class="phiz">
+              <i class="icon-smile" id="icon-smileComment" name='reply' sign="phiz{$vo.id}"> 
+              </i>
+              <span class="commentE">评论</span>
+            </div>
+          </div>
+          <div class="animate"><i class="icon-spinner6"></i></div>
+          <div class="list_ul">
+  <!-- 用户评论 -->
+  <!-- /用户评论 -->
+          </div>
+          <div class="moreReply"><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}" target="_blank"></a></div>
+        </div>
+<!-- 评论结束/ -->
+        </li>
+</if><!-- 判断是否转发结束 -->
+</volist> <!-- 循环结束 -->
+<div class="pages">{$page}</div>
+<else />
+  <span id="notWB">暂时没有内容~</span>
+</if>     <!-- 是否存在数据结束 -->
+      </ul>
+</div>
+</div>
+
+
+
+
+
+
+
+
+   <div class="sidebar">
+     <div class="fansnumber">
+      <table border="0">
+        <tr>
+          <td><a href="#" style="border-left: none;"><strong>{$userinfo.follow}</strong><span>关注</span></a></td>
+          <td><a href="#"><strong class="fansNum">{$userinfo.fans}</strong><span>粉丝</span></a></td>
+          <td><a href="#"><strong>{$userinfo.weibo}</strong><span>微博</span></a></td>
+        </tr>
+      </table>
+     </div>
+
+      <if condition="$followData">
+        <div id="followShow">
+          <h1>他关注的人</h1>
+          <ul id="followUl">
+            <foreach name="followData" item="vo">
+              <li>
+                <a href="{:U('/' . $vo['uid'])}" class="img"><img src="<if condition="$vo['face']">__ROOT__{$vo['face']}<else />__PUBLIC__/images/none.png</if>"></a>
+                <span class="username"><a href="{:U('/' . $vo['uid'])}">{$vo.username}</a></span>
+                <span class="follow"><p>关注: <strong>{$vo.follow}</strong></p><p>粉丝: <strong>{$vo.fans}</strong></p><p>微博: <strong>{$vo.weibo}</strong></p></span>
+                <span class="newWB">最新微博:　<a href="{:U('Discuss/index',array('wid'=>$vo['wid']))}" target="_blank">{$vo.content|replace_weibo=###,false}</a></span>
+              </li>
+            </foreach>
+          </ul>
+        </div>
+      </if>
+
+
+
+      <if condition="hotwb">
+        <!-- 实时热搜榜(其实就是点击量) -->
+        <div id="hotTime">
+          <span>实时热搜榜<a href="#">更多</a></span>
+          <ol>
+            <foreach name="hotwb"  item="vo">
+              <li><b style="color: rgb(255,{$key*20},{$key*20})">{$key+1}.</b><span>{$vo.comment}</span><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}">{$vo.content|omitString=###,15}</a></li>
+            </foreach>
+          </ol>
+        </div>
+        <!-- ////实时热搜榜(其实就是点击量) -->
+      </if>
+
+   </div>
+  </div>
+  <!-- 尾部样式 -->
+  <include file="./Index/Home/View/default/Public/footer.html" />
+
+
+  <!-- ============================添加用户分组 复制过来的========================== -->
+<php>
+  $group = M('group')->where(array('uid'=>session('uid')))->select();
+</php>
+  <div id="hiddenOperationBoxS">
+    <div class="content">
+      <div class="moverHidOper"></div>
+      <h1><span>关注好友</span></h1>
+      <div class="footer">
+        <span class="select">
+          <p>好友分组:　</p>
+          <select name="night" id="group">
+                <option selected="selected" value="0">默认分组</option>
+<volist name="group" id="v">
+                <option value="{$v.id}">{$v.name}</option>
+</volist>
+
+          </select>
+          还没有分组?<a href="#" class="addGroup" style="color: #615CE3">点击添加</a>
+          <input type="text" name="add" id="addText">
+          <span id="addGroupBtn">添加</span>
+        </span>
+        <input type="hidden" name="follow" value="">
+        <input type="button" value="取消" class="icon-cross">
+        <input type="submit" value="关注" name="btn2" id="addFollowBtn">
+      </div>
+    </div>
+  </div>
+    <!-- 尾部样式 -->
+
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/zoom/zoom.js"></script>
+<script type="text/javascript" src="__PUBLIC__/zoom/bootstrap.min.js"></script>

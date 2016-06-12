@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>我的首页</title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Uploadify/uploadify.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/zoom/zoom.css">
+  <script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/Tool.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Uploadify/jquery.uploadify.min.js"></script>
+  <script type="text/javascript">
+    var addGroupUrl    = "{:U('Common/addGroup')}";//点击 分组AJAX处理
+    var CommentUrl     = "{:U('Comment')}";//ajax 评论处理
+    var CommentListUrl = "{:U('getComentAll')}";//ajax后台取来评论列表
+    var praiseAjaxUrl  = "{:U('praiseAjax')}";//点赞后 AJAX后台更新
+    var getGidUrl      = "{:U('getGid')}";//切换组 的ajax提交处理地址
+    var keepUrl        = "{:U('keep')}";//AJAX收藏处理URl
+    var unKeepUrl      = "{:U('unKeep')}";//取消收藏URl
+    var deleteatUrl    = "{:U('deleteat')}";//删除@的文章
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/keepList.js"></script>
+</head>
+<body>
+  <!-- 头部模板 -->
+   <include file="./Index/Home/View/default/Public/header.html" />
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/Theme/{$style}/css/self.css">
+  <div id="main">
+    <div id="sdebar">
+      <ul class="top">
+        <li><i class="icon-home"></i><a href="{:U('Self/index')}">首页</a></li>
+        <li><i class="icon-mention"></i><a href="{:U('Self/atmeList')}">提到我的</a></li>
+        <li><i class="icon-comments"></i><a href="{:U('Self/commentList')}">评论</a></li>
+        <li><i class="icon-chat3"></i><a href="{:U('Self/callMeList')}">私信</a></li>
+        <li><i class="icon-star-empty"></i><a href="{:U('keepList')}">收藏</a></li>
+      </ul>
+      <h1>分组</h1>
+      <ul class="bottom" id="ulBottom">
+        <input type="hidden" name="nowGroup" value="">
+        <li><i class="icon-user-tie"></i><a href="{:U('Self/index')}" gid="0">全部</a></li>
+<volist name="group" id="v">
+        <li><i class="icon-user-tie"></i><a href="{:U('Self/index')}" gid="{$v.id}">{$v.name}</a></li>
+</volist>
+      </ul>
+      <a href="" id="addGroupAjax">创建新分组</a>
+      <input type="text" id="addGroupText">
+      <i class="icon-plus2" id="icon-plus2"></i>
+      <span id="Groupmsg">该分组已经存在</span>
+    </div>
+    <div id="mainRBox">
+      <div id="mainWB">
+<!--                          博客发表和博客转发                            -->
+<div class="blog">
+      <ul id="blogUl">
+<if condition="$resultAll">
+<volist name="resultAll" id="vo"> <!-- 微博循环 -->
+<if condition='!$vo["isturn"]'> <!-- 判断是否是转发微博 -->
+        <li>
+        <a href="{:U('/'.$vo['uid'])}" class="blogUserPica"><img src="
+<if condition="$vo['face']">
+          __ROOT__{$vo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+        " class="blogUserPic"></a>
+         <article class="excerpt">
+          <header>
+            <h4 class="userIFM" value="{$vo['uid']}">
+              <a href="{:U('/'.$vo['uid'])}" class="userName">{$vo.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+              <if condition="$type">
+                <a href="#" class="deleteat" wid={$vo.id}>清除消息</a>
+              </if>
+              <if condition="!$type">
+                <a href="#" class="keepTime">收藏于:　{$vo['ktime']|date='Y-m-d H:i:s',###}</a>
+              </if>
+            </h4>
+           <div class="timeIFM"><i class="icon-clock"> 
+                  {$vo.timeStr}
+           <span class="hiddenTime">{$vo.time}</span></i>　　来自可以防弹的手机</div>
+          </header>
+          <p class="blogContent">
+            {$vo.content|replace_weibo=###}
+          </p>
+          <div class="userUploadImg">
+<if condition="$vo['max']">
+            <img src="__ROOT__{$vo.max}" data-action="zoom">
+</if>
+          </div>
+          <footer>
+            <ul class="operation">
+              <li><a href="#" wid="{$vo.id}" class="keep"><i class="<if condition="$vo['kid']">icon-star-full<else />icon-star-empty</if>">　<span><if condition="$type">收藏<else />已收藏</if></span></i></a></li>
+              <li><a href="#" class="operation" alt="{$vo.id}" id="{$vo.id}"><i class="icon-redo2">　<span>{$vo.turn}</span></i></a></li>
+              <li><a href="#" class="praiseE" wid="{$vo['id']}"><i class="icon-fire">　<span>{$vo.praise}</span></i></a></li>
+              <li><a href="#" class="commentE" wid="{$vo['id']}"><i class="icon-chat">　<span>{$vo.comment}</span></i></a></li>
+            </ul>
+          </footer>
+         </article>
+<!-- 评论 -->
+        <div class="comment">
+          <div class="publish">
+            <div class="input">
+              <img src="
+<if condition="$userinfo['face']">
+          __ROOT__{$userinfo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+              ">
+              <input type="text" name="comment" id="{$vo.id}" sign="phiz{$vo.id}">
+            </div>
+            <div class="phiz">
+              <i class="icon-smile" id="icon-smileComment" name='reply' sign="phiz{$vo.id}"> </i>
+              <span class="commentE">评论</span>
+            </div>
+          </div>
+          <div class="animate"><i class="icon-spinner6"></i></div>
+          <div class="list_ul">
+  <!-- 用户评论 -->      
+  <!-- /用户评论 -->
+          </div>
+          <div class="moreReply"><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}" target="_blank"></a></div>
+        </div>
+<!-- 评论结束/ -->
+        </li>
+<else /><!-- 是转发的循环转发样式 -->
+
+<!-- ============================转发微博========================== -->
+        <li class="forwarding">
+        <a href="{:U('/'.$vo['uid'])}" class="blogUserPica" target="_blank"><img src="
+<if condition="$vo['face']">
+          __ROOT__{$vo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+        " class="blogUserPic"></a>
+         <article class="excerpt">
+          <header>
+            <h4 class="userIFM" value="{$vo['uid']}">
+              <a href="{:U('/'.$vo['uid'])}" class="userName"  target="_blank">{$vo.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+              <if condition="$type">
+                <a href="#" class="deleteat" wid={$vo.id}>清除消息</a>
+              </if>
+              <if condition="!$type">
+                <a href="#" class="keepTime">收藏于:　{$vo['ktime']|date='Y-m-d H:i:s',###}</a>
+              </if>
+            </h4>
+           <div class="timeIFM"><i class="icon-clock"> {$vo.timeStr}<span class="hiddenTime">{$vo.time}</span></i>　　来自可以防弹的手机</div>
+          </header>
+          <p class="blogContent">
+            {$vo.content|str_replace='//','<span  style="color: #bbb;font-size: 12px;font-weight: bold;">//</span >',###|replace_weibo=###}
+          </p>
+<if condition="$vo['isturn'] eq -1">
+    <span class="deleteNotWb">用户转发的微博已被删除~</span>
+<else />
+
+          <div class="userforwarding">
+            <h4 class="userIFM">
+              <a href="{:U('/' . $vo['isturn']['uid'])}" class="userNameisturn" name="{$vo.isturn.uid}" target="_blank">{$vo.isturn.username}</a>
+              <a href="#" class="userLevel"><i class="icon-award8"></i></a>
+            </h4>
+            <p class="forwardingContent">
+              {$vo.isturn.content|replace_weibo=###}
+            </p>
+            <div class="forwardingUploadImg">
+<if condition="$vo['isturn']['max']">
+            <img src="__ROOT__{$vo.isturn.max}" data-action="zoom">
+</if>
+            </div>
+            <div class="forwardingIFM">
+              <span class="forwardingTime">{$vo.isturn.time|date='Y-m-d H:i:s',###}</span>
+              <ul class="forwardingCount">
+                <li><a href="#" class="operation" yid={$vo.isturn.id}><i class="icon-redo2"></i>　<span>{$vo.isturn.turn}</span></a></li>
+                <li><a href="#" class="praise"><i class="icon-fire"></i>　<span>{$vo.isturn.praise}</span></a></li>
+                <li><a href="#"><i class="icon-chat"></i>　<span>{$vo.isturn.comment}</span></a></li>
+              </ul>
+            </div>
+          </div>
+</if>
+          <footer>
+            <ul class="operation">
+              <li><a href="#" wid="{$vo.id}" class="keep"><i class="<if condition="$vo['kid']">icon-star-full<else />icon-star-empty</if>">　<span><if condition="$type">收藏<else />已收藏</if></span></i></a></li>
+              <li><a href="#" class="operation" id="{$vo.id}" tid="{$vo.isturn.id}"><i class="icon-redo2">　<span>{$vo.turn}</span></i></a></li>
+              <li><a href="#" class="praiseE" wid="{$vo.id}"><i class="icon-fire">　<span>{$vo.praise}</span></i></a></li>
+              <li><a href="#" class="commentE" wid="{$vo['id']}"><i class="icon-chat">　<span>{$vo.comment}</span></i></a></li>
+            </ul>
+          </footer>
+         </article>
+<!-- 评论 -->
+        <div class="comment">
+          <div class="publish">
+            <div class="input">
+              <img src="        
+<if condition="$userinfo['face']">
+          __ROOT__{$userinfo['face']}
+  <else />
+          __PUBLIC__/images/none.png
+</if>
+          ">
+          <input type="text" name="comment" id="{$vo.id}" sign="phiz{$vo.id}">
+            </div>
+            <div class="phiz">
+              <i class="icon-smile" id="icon-smileComment" name='reply' sign="phiz{$vo.id}"> 
+              </i>
+              <span class="commentE">评论</span>
+            </div>
+          </div>
+          <div class="animate"><i class="icon-spinner6"></i></div>
+          <div class="list_ul">
+  <!-- 用户评论 -->
+  <!-- /用户评论 -->
+          </div>
+          <div class="moreReply"><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}" target="_blank"></a></div>
+        </div>
+<!-- 评论结束/ -->
+        </li>
+</if><!-- 判断是否转发结束 -->
+</volist> <!-- 循环结束 -->
+<else />
+  <span id="notWB"><if condition="$type">您暂时没有被@过~<else />您暂时没有收藏的内容~</if></span>
+</if>     <!-- 是否存在数据结束 -->
+<if condition="$page">
+  <div class="pages">{$page}</div>
+</if>
+  </ul>
+    </div>
+<!-- 整体微博结束 -->
+      </div>
+      <div id="userSet">
+       <div class="userIFM" value='{$userinfo["uid"]}'>
+         <div class="bg">
+           <img src="__PUBLIC__/images/self_set.jpg">
+           <a href="{:U('UserSetting/index')}/type/face" target="_blank"><img src="
+<if condition="$userinfo['face']">
+            __ROOT__{$userinfo.face}
+  <else />
+            __PUBLIC__/images/none.png
+</if>
+        "></a>
+         </div>
+         <span><a target="_blank" href="{:U('UserSetting/index')}" class="username">{$userinfo.username}</a></span>
+         <div class="ul">
+           <ul>
+             <li><a href="{:U('/follow/'.$userinfo["uid"])}"><p>{$userinfo.follow}</p><span>关注</span></a></li>
+             <li><a href="{:U('/fans/'.$userinfo["uid"])}"><p>{$userinfo.fans}</p><span>粉丝</span></a></li>
+             <li><a href="#"><p class="userWeibo">{$userinfo.weibo}</p><span>微博</span></a></li>
+           </ul>
+         </div>
+       </div>
+
+
+            <!-- 可能感兴趣的人 -->
+          <if condition="$resultI">
+          <div id="interest">
+            <span>可能感兴趣的人<a href="#">更多</a></span>
+              <volist name="resultI" id="vo">
+              <div class="interestLi">
+                <a href="{:U('/'.$vo['uid'])}" class="img">
+                  <img src="
+<if condition="$vo['face']">
+                  __ROOT__{$vo.face}
+  <else />
+                  __PUBLIC__/images/none.png
+</if>
+                  ">
+                </a>
+                <span class="name"><a href="{:U('/'.$vo['uid'])}">{$vo.username}</a>
+                <i class="<if condition="$vo['sex']!='男'">icon-male<else />icon-female</if>" style="color:
+<if condition="$vo['sex']!='男'">
+          #F18CAE
+<else />
+          #80D2F0
+</if>
+                "></i>
+                </span>
+                <span class="location">{$vo.location}<font><strong> {$vo.count} </strong>个共同好友</font></span>
+              </div>
+          </volist>
+          </div>
+          </if>
+            <!-- 热门话题 -->
+        <if condition="hotwb">
+          <div class="hotTopic">
+            <h1>热门话题</h1>
+            <ul>
+              <foreach name="hotwb"  item="vo">
+              <li><a href="{:U('Discuss/index',array('wid'=>$vo['id']))}">{$vo.content|omitString=###,12}</a><span>{$vo.comment}</span></li>
+              </foreach>
+            </ul>
+          </div>
+        </if>
+      </div>
+    </div>
+  </div>
+  <div id="fade"><span></span></div>
+    <!-- 尾部样式 -->
+  <include file="./Index/Home/View/default/Public/footer.html" />
+  <a href="#mainRBox" id="return"><i class="icon-rocket"></i></a>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/zoom/zoom.js"></script>
+<script type="text/javascript" src="__PUBLIC__/zoom/bootstrap.min.js"></script>

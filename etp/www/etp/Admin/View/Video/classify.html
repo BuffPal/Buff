@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<style type="text/css">
+  tbody tr:hover >td{
+    background: #DEF0FE;
+  }
+</style>
+
+<!-- 引入头文件 -->
+<include file='Public/header' />
+<div class="col-md-12" style="padding: 10px 40% 10px 40%;">
+  <a href="{:U('addClassify')}" class="button button-3d button-primary button-rounded center-bolck">添加根类</a>
+</div>
+<table class="table table-hover table-condensed col-md-12">
+  <thead>
+    <tr>
+      <th style="width: 5%">编号</th>
+      <th style="width: 85%">类名</th>
+      <th style="width: 10%">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <if condition="$classifyLists">
+    <foreach name='classifyLists' item='v'>
+      <tr>
+        <td>{$key+1}</td>
+        <td>{$v.html}{$v.name}</td>
+        <td>
+          <a href="{:U('addClassify',array('id'=>$v['id'],'name'=>$v['name']))}">[添加]</a> | 
+          <a href="{:U('reviseClassify',array('id'=>$v['id']))}">[修改]</a> | 
+          <a href="#" class="delete" cid="{$v.id}">[删除]</a>
+        </td>
+      </tr>
+    </foreach>
+  <else />
+        <tr>
+        <td></td>
+        <td>暂时木有数据,<a href="3">点我添加</a></td>
+        <td>
+        </td>
+      </tr>
+  </if>
+
+
+  </tbody>
+</table>
+
+<!-- 引入尾文件 -->
+<include file='Public/footer' />
+<script type="text/javascript">
+  /**
+   * 点击删除删除他
+   */
+  $('a.delete').on('click',function(){
+    if(confirm('确认删除么')){
+      var id  = $(this).attr('cid');
+      var oTr = $(this).closest('tr');
+      //后台ajax删除 
+      $.post("{:U('deleteClassify')}",{'id':id},function(data){
+        if(data.status){
+          tishi(data.msg);
+          oTr.slideUp("fast");
+        }else{
+          alert(data.msg);
+        }
+      },'json');
+    }else{
+      return false;
+    }
+  })
+
+</script>
+</body>
+</html>

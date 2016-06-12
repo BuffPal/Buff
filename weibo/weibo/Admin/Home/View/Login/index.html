@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>后台登录</title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin_login.css">
+  <script type="text/javascript" src="../js/admin_login.js"></script>
+</head>
+<body>
+  <form action="{:U('checkLogin')}" method="post" id="admin_login">
+    <fieldset>
+      <legend>后台登录系统</legend>
+      <label> 账　号　: <input type="text" name="manageName" class="text"></label>
+      <label> 密　码　: <input type="password" name="managePass" class="text"></label>
+      <label> 验证码　: <input type="text" name="code" class="text"></label>
+      <label class="t">下图为验证码　(不区分大小写)</label>
+      <label><img src="{:U('verify')}" onclick="javascript:this.src='{:U('verify')}?tm='+Math.random();"></label>
+      <input type="submit" value="登　录" class="submit" name="send" onclick="return checkLogin();">
+    </fieldset>
+  </form>
+</body>
+</html>

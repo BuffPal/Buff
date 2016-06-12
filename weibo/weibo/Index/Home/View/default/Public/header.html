@@ -1,0 +1,72 @@
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/header.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/style.css">
+  <script type="text/javascript">
+    var changeBgUrl = "{:U('Self/changebg')}"; 
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/header.js"></script>
+  <input type="hidden" name="session" value="{:session('uid')}">
+  <div id="header">
+    <nav>
+      <a class="logo" href="#">
+        首页
+        <img src="__PUBLIC__/images/baidulogo.png" alt="首页" class="logo">
+      </a>
+      <ul>
+        <li><a href="{:U('Self/index')}">首页</a></li>
+        <li><a href="{:U('Self/callMeList')}">私信</a></li>
+        <li><a href="{:U('Self/commentList')}">评论</a></li>
+        <li><a href="{:U('Self/atmeList')}">@我</a></li>
+        <li><form action="{:U('Search/search')}" method="get"><input type="text" name="keyword" id="soso" placeholder="{$hotsoso}"><input type="submit" value="搜　索" id="sosoBtn"></form></li>
+        <li><a href="{:U('Index/index')}">主页</a></li>
+        <li><a href="#"><i class="icon-checklist"></i></a></li>
+        <li><a href="#"><i class="icon-mail5"></i></a></li>
+        <li><a href="#"><i class="icon-book2"></i></a>
+           <ul class="hidden10">
+              <li><a href="{:U('UserSetting/index')}">账号设置</a></li>
+              <li><a href="#" class="changeBgA">模板设置</a></li>
+              <li><a href="{:U('Self/logout')}">退出登录</a></li>
+           </ul>
+        </li>
+        <li><a href="#"><i class="icon-radio-checked"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="hiddenOperationBox">
+    <div class="content">
+      <div class="moverHidOper"><i class="icon-cross" name="icon-cross"></i></div>
+      <h1><span>转发微博</span></h1>
+      <a target="_blank" href="" id="operationUsername"></a><span id="operationSpan"></span>
+      <p class="inputCount">还可以输入[ <span id="font-numo"> 140 </span> ]个字</p>
+      <form action="{$operationWeibo}" method="post">
+        <input type="hidden" name="wid" value="">
+        <input type="hidden" name="tid" value="0">
+        <textarea name="operationContento"></textarea>
+        <div class="footer">
+          <i class="icon-smile" id="icon-smileOperation"> <!-- 头像隐藏框 -->
+          </i>
+          <span id="isturnIFM"></span>
+        <input type="submit" value="转发" name="btn" id="operationFromSbt"></div>
+      </form>
+    </div>
+  </div>
+  <div id="fade"><span></span></div>
+  <php>
+      $style = M('userinfo')->where(array('uid'=>session('uid')))->getField('style');
+  </php>
+  <div id="changebgBox">
+    <h1 id="changebgMove">请选择您要更换的背景</h1>
+    <img src="__PUBLIC__/images/style1.jpg" alt="style1">
+    <img src="__PUBLIC__/images/style2.jpg" alt="style2">
+    <img src="__PUBLIC__/images/style3.jpg" alt="style3">
+    <img src="__PUBLIC__/images/style4.jpg" alt="style4">
+    <img src="__PUBLIC__/images/style5.jpg" alt="style5">
+    <img src="__PUBLIC__/images/style6.jpg" alt="style6">
+    <img src="__PUBLIC__/images/style7.jpg" alt="style7">
+    <img src="__PUBLIC__/images/style8.jpg" alt="style8">
+    <img src="__PUBLIC__/images/style9.jpg" alt="default">
+    <input type="hidden" name="changeBgStyle">
+    <div class="changeClick">
+      <p class="sendc">保存</p>
+      <p class="x">取消</p>
+    </div>
+  </div>

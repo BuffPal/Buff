@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <include file="Public/nav" />
+    <!-- 自己的样式 -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Index/register.css">
+    <script type="text/javascript">
+    var checkAjaxUrl = "{:U('checkAjax')}"; //ajax验证账号是否存在
+    </script>
+    <div class="container main">
+        <div class="row">
+            <div class="col-md-5 info hidden-xs ">
+                <img src="__PUBLIC__/images/Index/register/google.png">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h2>
+              欢迎加入
+            </h2>
+                        <p>
+                            这里是谷歌公司旗下的奇迹公司,我们是最大的股东之一!加入我们,我们正在招贤纳士.我们更懂程序猿.
+                        </p>
+                        <p>
+                            <a class="button button-raised button-primary button-pill" href="#">关于我们 »</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <form action="{:U('checkRegister')}" method="post" class="form-horizontal col-md-5" name="register" id="register">
+                <div class="form-group">
+                    <label for="account" class="col-sm-6 control-label">账号<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input id="account" type="text" name="account" class="form-control text" placeholder="请输入您的账号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-sm-6 control-label">用户名<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input type="text" id="username" name="username" class="form-control text" placeholder="请输入您的昵称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-6 control-label">密码<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input type="password" id="password" name="password" class="form-control text" placeholder="请输入您的密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notPassword" class="col-sm-6 control-label">确认密码<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input type="password" id="notPassword" name="notPassword" class="form-control text" placeholder="请确认您的密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-6 control-label">邮箱<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input type="text" id="email" name="email" class="form-control text" placeholder="请确认您的邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verify" class="col-sm-6 control-label">请输入下面验证码<em>*</em></label>
+                    <div class="col-sm-6">
+                        <input type="text" id="verify" name="verify" class="form-control text" placeholder="不区分大小写">
+                        <p></p>
+                        <img src="{:U('verify')}" class="verify" onclick="javascript:this.src='{:U('verify')}?' + Math.random();">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">　</label>
+                    <div class="col-sm-6">
+                        <button id="submita" class="button button-3d button-primary button-rounded">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="img2" style="background-image: url('__PUBLIC__/Images/Index/register/2.jpg')"></div>
+        <div id="img" class="img" style="background-image: url('__PUBLIC__/Images/Index/register/1.jpg')"></div>
+    </div>
+    <!-- 尾部 -->
+    <include file="Public/footer" />
+    <!-- 验证插件vaildata(单独引入) -->
+    <script type="text/javascript" src="__PUBLIC__/js/plug-in/validate.js"></script>
+    <!-- 自己的js -->
+    <script type="text/javascript" src="__PUBLIC__/js/Index/register.js"></script>
+</body>
+
+</html>

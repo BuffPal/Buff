@@ -1,0 +1,660 @@
+[ 2016-04-18T10:42:52+08:00 ] ::1 /weibo/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.018280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001773s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001954s ]
+SQL: SHOW COLUMNS FROM `wb_user` [ RunTime:0.1162s ]
+SQL: SELECT `id` FROM `wb_user` WHERE `id` = null LIMIT 1   [ RunTime:0.0027s ]
+
+[ 2016-04-18T10:42:52+08:00 ] ::1 /weibo/index.php/Home/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000690s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000873s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.003530s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.003803s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020520s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020695s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001300s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001454s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001913s ]
+
+[ 2016-04-18T10:43:02+08:00 ] ::1 /weibo/index.php/Home/Login/cacheLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000886s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001189s ]
+SQL: SHOW COLUMNS FROM `wb_user` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `wb_user` WHERE `account` = 'admin5' AND `password` = '20917c851c4a54f2a054390dac9085b7' LIMIT 1   [ RunTime:0.0246s ]
+
+[ 2016-04-18T10:43:04+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000777s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0309s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 12 LIMIT 1   [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0074s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 12  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0075s ]
+SQL: SELECT `content`,`comment`,`id` FROM `wb_weibo` ORDER BY comment DESC LIMIT 10   [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0080s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 12  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0070s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('12','7') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0103s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '106' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '101' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 12  [ RunTime:0.0003s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (7)
+                  AND
+                      f.follow NOT IN (7)
+                  AND
+                      f.follow<>12
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0237s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000371s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000726s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 12 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.101501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.101651s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000677s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000810s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000886s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001096s ]
+
+[ 2016-04-18T10:43:14+08:00 ] ::1 /weibo/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000746s ]
+SQL: SHOW COLUMNS FROM `wb_user` [ RunTime:0.0052s ]
+SQL: SELECT `id` FROM `wb_user` WHERE `id` = null LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2016-04-18T10:43:14+08:00 ] ::1 /weibo/index.php/Home/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000209s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000703s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000212s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010142s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010335s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000798s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000990s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001254s ]
+
+[ 2016-04-18T10:43:22+08:00 ] ::1 /weibo/index.php/Home/Login/cacheLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000957s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001247s ]
+SQL: SHOW COLUMNS FROM `wb_user` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `wb_user` WHERE `account` = 'xiaomao' AND `password` = '20917c851c4a54f2a054390dac9085b7' LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2016-04-18T10:43:24+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0051s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0046s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0051s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow NOT IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow<>7
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000208s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000377s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.074898s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075239s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000851s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000984s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001240s ]
+
+[ 2016-04-18T10:43:29+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001101s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001364s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0187s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 12 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0039s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 12  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0090s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 12  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0069s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('12','7') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0008s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '106' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '101' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 12  [ RunTime:0.0003s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (7)
+                  AND
+                      f.follow NOT IN (7)
+                  AND
+                      f.follow<>12
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000203s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000347s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 12 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.074864s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075010s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000688s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000799s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000961s ]
+
+[ 2016-04-18T10:43:33+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0063s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 7  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0042s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0048s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0009s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0007s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow NOT IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow<>7
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000337s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000598s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.073082s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.073232s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001206s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001483s ]
+
+[ 2016-04-18T10:43:36+08:00 ] ::1 /weibo/index.php/Home/Self/changebg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000921s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001006s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0042s ]
+SQL: UPDATE `wb_userinfo` SET `style`='style8' WHERE `uid` = 7 [ RunTime:0.0254s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000698s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000894s ]
+
+[ 2016-04-18T10:43:37+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000718s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000764s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0041s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0041s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0063s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0014s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0006s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow NOT IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow<>7
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000202s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000359s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.083013s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.083325s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000583s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000841s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002863s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003187s ]
+
+[ 2016-04-18T10:43:41+08:00 ] ::1 /weibo/index.php/Home/UserSetting/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000532s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000844s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0046s ]
+SQL: SELECT `username`,`truename`,`sex`,`location`,`constellation`,`intro`,`face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000339s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000665s ]
+NOTIC: [8] Undefined variable: type E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 8 行.
+NOTIC: [8] Undefined variable: operationWeibo E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 70 行.
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0011s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032781s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032976s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000808s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000991s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001370s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002181s ]
+
+[ 2016-04-18T10:43:45+08:00 ] ::1 /weibo/index.php/Home/UserSetting/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000519s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0050s ]
+SQL: SELECT `username`,`truename`,`sex`,`location`,`constellation`,`intro`,`face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000149s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000284s ]
+NOTIC: [8] Undefined variable: type E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 8 行.
+NOTIC: [8] Undefined variable: operationWeibo E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 70 行.
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0005s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020446s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020597s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000374s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000503s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000796s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001065s ]
+
+[ 2016-04-18T10:43:47+08:00 ] ::1 /weibo/index.php/Home/UserSetting/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000592s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000802s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0067s ]
+SQL: SELECT `username`,`truename`,`sex`,`location`,`constellation`,`intro`,`face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000258s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000505s ]
+NOTIC: [8] Undefined variable: type E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 8 行.
+NOTIC: [8] Undefined variable: operationWeibo E:\wamp\www\weibo\Index\Runtime\Cache\Home\065ed8e1d39ea760e19fc224b37571e4.php 第 70 行.
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027863s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028171s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000762s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000875s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001113s ]
+
+[ 2016-04-18T10:43:49+08:00 ] ::1 /weibo/index.php/Home/Self/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000526s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000694s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0046s ]
+SQL: SELECT `username`,`face`,`intro`,`follow`,`fans`,`weibo`,`uid` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_group` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `wb_group` WHERE `uid` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0042s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0049s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 0,10   [ RunTime:0.0008s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '1' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '111' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0006s ]
+SQL: SELECT
+                      u.uid,
+                      u.username,
+                      u.face,
+                      u.location,
+                      u.sex,
+                      COUNT(f.follow) AS count
+                 FROM
+                      wb_follow f
+            LEFT JOIN
+                      wb_userinfo u
+                   ON
+                      f.follow=u.uid
+                WHERE
+                      f.fans  IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow NOT IN (28,29,11,18,25,16,26,22,23,24,20,33,17,17,32,6,30,27,14,8,31,15,21,13,34,5,9,10,12)
+                  AND
+                      f.follow<>7
+             GROUP BY
+                      f.follow
+             ORDER BY
+                      count DESC
+                LIMIT
+                      4
+                       [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000209s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000366s ]
+SQL: SELECT `style` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant hotwb - assumed 'hotwb' E:\wamp\www\weibo\Index\Runtime\Cache\Home\fbfe47e79fa79c3498950d6bf4c09da3.php 第 351 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.057633s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.057858s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001029s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000880s ]
+
+[ 2016-04-18T10:43:53+08:00 ] ::1 /weibo/index.php/Home/Self/ajaxData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000837s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000942s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001196s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0057s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0043s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 10,10   [ RunTime:0.0023s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '106' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '101' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '93' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `wb_comment` [ RunTime:0.0532s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 106 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 107 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 695 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: htmlAll E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 285 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 106 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Cannot use a scalar value as an array E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 281 行.
+NOTIC: [2] Cannot use a scalar value as an array E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 282 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = null LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] Cannot use a scalar value as an array E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 283 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 102 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 695 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 93 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 94 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 695 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 93 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 92 LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 91 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 90 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 89 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 88 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001046s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001377s ]
+
+[ 2016-04-18T10:43:56+08:00 ] ::1 /weibo/index.php/Home/Self/ajaxData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000689s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003541s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001584s ]
+SQL: SHOW COLUMNS FROM `wb_follow` [ RunTime:0.0078s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SELECT `follow` FROM `wb_follow` WHERE `fans` = 7  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_weibo` [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `wb_userinfo` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `wb_picture` [ RunTime:0.0046s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.uid IN ('7','28','29','11','18','25','16','26','22','23','24','20','33','17','17','32','6','30','27','14','8','31','15','21','13','34','5','9','10','12') ORDER BY `time` DESC LIMIT 20,10   [ RunTime:0.0013s ]
+SQL: SELECT weibo.content AS content,weibo.isturn AS isturn,weibo.time AS time,weibo.turn AS turn,weibo.praise AS praise,weibo.comment AS comment,weibo.uid AS uid,weibo.id AS id,userinfo.username AS username,userinfo.face AS face,picture.mini AS mini,picture.medium AS medium,picture.max AS max FROM wb_weibo weibo LEFT JOIN wb_userinfo userinfo ON weibo.uid=userinfo.uid LEFT JOIN wb_picture picture ON weibo.id=picture.wid WHERE weibo.id = '39' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `wb_comment` [ RunTime:0.0047s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 87 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: htmlAll E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 288 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 86 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 85 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 84 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 83 LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 82 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 81 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 80 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 79 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 594 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 39 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wb_comment` WHERE `wid` = 78 LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: html E:\wamp\www\weibo\Index\Home\Controller\SelfController.class.php 第 695 行.
+SQL: SELECT `face` FROM `wb_userinfo` WHERE `uid` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001225s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001448s ]
+

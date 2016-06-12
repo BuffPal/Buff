@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放</title>
+</head>
+
+<body>
+    <!-- 头部引入 -->
+    <include file="Public/nav" />
+    <!-- 音乐详细页样式 -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Index/M_lists.css">
+    <div class="container p0" style="margin-top: 80px;">
+        <div class="row">
+            <!-- 手风琴分类 -->
+            <div class="col-md-2 p0">
+                <div class="panel-group" id="accordion">
+                    <if condition='$classifyLists'>
+                        <foreach name='classifyLists' item="v">
+                            <div class="panel panel-default maxWarp">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                 <a href="#collapse{$key+1}" data-toggle="collapse" data-parent="#accordion">{$v.name}<span class="glyphicon glyphicon-chevron-up sanjiao"></span></a>
+                            </h4>
+                                </div>
+                                <div id="collapse{$key+1}" class="panel-collapse collapse liwarp">
+                                    <div class="panel-body">
+                                        <ul class="lists">
+                                            <input type="hidden" value="{$nowCid}" id="nowCid">
+                                            <if condition='$v["child"]'>
+                                                <foreach name='v.child' item="value">
+                                                    <li cid='{$value.id}'>
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <a href="{:U('lists',array('cid'=>$value['id']))}">
+                                                    <img src="{$value.faceurl}" class="media-object">
+                                                </a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <a href="{:U('lists',array('cid'=>$value['id']))}">{$value.name}</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </foreach>
+                                                <else />
+                                                <h2>暂木有数据</h2>
+                                            </if>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </foreach>
+                        <else />
+                        <h1>暂时木有数据</h1>
+                    </if>
+                </div>
+            </div>
+            <!-- 主页面 就是右侧列表-->
+            <div class="col-md-10 p0 main">
+                <div class="row">
+                    <p class="col-md-12">奇迹热歌</p>
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>　</th>
+                                    <th style="width:30%;">歌曲</th>
+                                    <th style="width:30%;">歌手</th>
+                                    <th class="hidden-xs">热度</th>
+                                    <th>　</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <if condition='$resultAll'>
+                                    <foreach name='resultAll' item='v'>
+                                        <tr>
+                                            <td>{$key+1}</td>
+                                            <td><a href="#">{$v.musicname}</a></td>
+                                            <td><a href="#">{$v.author}</a></td>
+                                            <td class="hidden-xs"><span class="glyphicon glyphicon-fire"></span> {$v.playcount}</td>
+                                            <td class="OP">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                <span class="glyphicon glyphicon-play" mid='{$v.id}'></span>
+                                            </td>
+                                        </tr>
+                                    </foreach>
+                                </if>
+
+
+                            </tbody>
+                        </table>
+                        <h4 class="loading hidden">加载中.....<span class="glyphicon glyphicon-refresh"></span></h4>
+                    </div>
+                </div>
+                <div class="pages">{$page}</div>
+            </div>
+        </div>
+    </div>
+    <!-- 尾部引入 -->
+    <include file="Public/footer" />
+    <!-- 音乐详细页js代码 -->
+    <script type="text/javascript" src="__PUBLIC__/js/Index/M_lists.js"></script>
+</body>
+
+</html>
