@@ -1,3 +1,0 @@
-<?php
-//000000086400a:8:{i:0;a:3:{s:2:"id";s:2:"42";s:9:"musicname";s:9:"卢浮宫";s:6:"author";s:9:"投影仪";}i:1;a:3:{s:2:"id";s:2:"41";s:9:"musicname";s:6:"你好";s:6:"author";s:5:"music";}i:2;a:3:{s:2:"id";s:2:"40";s:9:"musicname";s:6:"官方";s:6:"author";s:6:"额头";}i:3;a:3:{s:2:"id";s:2:"39";s:9:"musicname";s:3:"风";s:6:"author";s:6:"属性";}i:4;a:3:{s:2:"id";s:2:"38";s:9:"musicname";s:6:"普通";s:6:"author";s:9:"阿什顿";}i:5;a:3:{s:2:"id";s:2:"37";s:9:"musicname";s:3:"怕";s:6:"author";s:3:"与";}i:6;a:3:{s:2:"id";s:2:"36";s:9:"musicname";s:3:"过";s:6:"author";s:3:"我";}i:7;a:3:{s:2:"id";s:2:"35";s:9:"musicname";s:3:"想";s:6:"author";s:3:"赞";}}
-?>

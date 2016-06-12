@@ -1,3 +1,0 @@
-<?php
-//000000086400a:8:{i:0;a:3:{s:2:"id";s:2:"20";s:9:"musicname";s:7:"Academy";s:6:"author";s:6:"张三";}i:1;a:3:{s:2:"id";s:2:"24";s:9:"musicname";s:6:"大树";s:6:"author";s:6:"树懒";}i:2;a:3:{s:2:"id";s:2:"25";s:9:"musicname";s:6:"牛马";s:6:"author";s:6:"小牛";}i:3;a:3:{s:2:"id";s:2:"23";s:9:"musicname";s:6:"山歌";s:6:"author";s:6:"竹子";}i:4;a:3:{s:2:"id";s:2:"26";s:9:"musicname";s:6:"小羊";s:6:"author";s:9:"喜羊羊";}i:5;a:3:{s:2:"id";s:2:"21";s:9:"musicname";s:9:"天空蓝";s:6:"author";s:6:"二三";}i:6;a:3:{s:2:"id";s:2:"27";s:9:"musicname";s:6:"小马";s:6:"author";s:9:"小马儿";}i:7;a:3:{s:2:"id";s:2:"22";s:9:"musicname";s:6:"草原";s:6:"author";s:6:"小草";}}
-?>

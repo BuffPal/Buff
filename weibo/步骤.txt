@@ -1,4 +1,0 @@
-1.安装Warp 装过就不用装了, 然后导入 weibo这个项目 导入到 www目录
-2.导入数据库  浏览器 localhost/phpmyadmin/
-3.先创建一个数据库 名字必须叫 weibo 编码是utf-8
-4.导入数据库
